@@ -1,0 +1,30 @@
+{
+  "targets": [
+    {
+      "source_ligand": "HNL_HEVBR_1_257_0/1scq_A_rec_5yas_fac_lig_tt_docked_11.sdf",
+      "receptor": "HNL_HEVBR_1_257_0/1scq_A_rec.pdb",
+      "original_lmdb_key": "00028852",
+      "preference_keys": [
+        "00005147",
+        "00005148",
+        "00034396",
+        "00034397",
+        "00035248",
+        "00035249",
+        "00064486",
+        "00064487",
+        "00075982",
+        "00075983"
+      ],
+      "protein_atoms": 312,
+      "ligand_atoms": 11,
+      "ligand_size_bin": [
+        8,
+        15
+      ],
+      "target_id": 0,
+      "rl_split": "train",
+      "original_target_id": 0
+    }
+  ]
+}

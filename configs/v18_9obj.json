@@ -1,0 +1,398 @@
+{
+  "outdir": "outputs/v18_9obj",
+  "initial_checkpoint": "checkpoints/initial.pt",
+  "targets_manifest": "configs/targets_9obj.json",
+  "baseline_dataset": "data/public_preferences.pt",
+  "objectives": [
+    {
+      "name": "affinity",
+      "evaluator": "python:utils.scoring_client:read_property",
+      "parameters": {
+        "property_name": "affinity"
+      }
+    },
+    {
+      "name": "qed",
+      "evaluator": "python:utils.scoring_client:read_property",
+      "parameters": {
+        "property_name": "qed"
+      }
+    },
+    {
+      "name": "sa",
+      "evaluator": "python:utils.scoring_client:read_property",
+      "parameters": {
+        "property_name": "sa"
+      }
+    },
+    {
+      "name": "logS",
+      "evaluator": "python:utils.scoring_client:read_property",
+      "parameters": {
+        "property_name": "logS"
+      }
+    },
+    {
+      "name": "herg_safety",
+      "evaluator": "python:utils.scoring_client:read_property",
+      "parameters": {
+        "property_name": "herg_safety"
+      }
+    },
+    {
+      "name": "permeability",
+      "evaluator": "python:utils.scoring_client:read_property",
+      "parameters": {
+        "property_name": "permeability"
+      }
+    },
+    {
+      "name": "cyp3a4_safety",
+      "evaluator": "python:utils.scoring_client:read_property",
+      "parameters": {
+        "property_name": "cyp3a4_safety"
+      }
+    },
+    {
+      "name": "ames_safety",
+      "evaluator": "python:utils.scoring_client:read_property",
+      "parameters": {
+        "property_name": "ames_safety"
+      }
+    },
+    {
+      "name": "metabolic_stability",
+      "evaluator": "python:utils.scoring_client:read_property",
+      "parameters": {
+        "property_name": "metabolic_stability"
+      }
+    }
+  ],
+  "training": {
+    "group_size": 8,
+    "sampled_transitions": 16,
+    "update_epochs": 2,
+    "actor_lr": 5e-06,
+    "condition_lr": 0.0001,
+    "critic_lr": 0.001,
+    "critic_hidden": 64,
+    "clip_epsilon": 0.2,
+    "preco_strength": 0.1,
+    "reference_kl_coefficient": 0.01,
+    "invalid_cost": 10.0,
+    "max_grad_norm": 8.0,
+    "preference_mix": 0.7,
+    "group_relative_advantages": true
+  },
+  "directions": {
+    "count": 64,
+    "seed": 20260917,
+    "floor": 0.02
+  },
+  "hypervolume": {
+    "samples_power": 18,
+    "seed": 7101
+  },
+  "evaluation": {
+    "batch_size": 8
+  },
+  "constraints": [
+    {
+      "name": "valid_generation",
+      "evaluator": "python:utils.scoring_client:read_property",
+      "relation": "ge",
+      "threshold": 1.0,
+      "limit": 0.2,
+      "parameters": {
+        "property_name": "valid_generation"
+      }
+    },
+    {
+      "name": "geometry",
+      "evaluator": "python:utils.scoring_client:read_property",
+      "relation": "le",
+      "threshold": 10.0,
+      "limit": 0.2,
+      "cost_type": "indicator",
+      "scale": 10.0,
+      "parameters": {
+        "property_name": "geometry"
+      }
+    }
+  ],
+  "lagrangian": {
+    "learning_rate": 0.1,
+    "initial_multiplier": 1.0
+  },
+  "lead_optimization": {
+    "start_timestep": 100,
+    "seed_atom_logit_bias": 6.0,
+    "seed_bond_logit_bias": 4.0
+  },
+  "reconstruction_version": "pristine_aromatic_v1",
+  "stereochemistry": "from_3d",
+  "discovery": {
+    "objectives": [
+      {
+        "name": "affinity",
+        "evaluator": "python:utils.scoring_client:read_property",
+        "parameters": {
+          "property_name": "affinity"
+        }
+      },
+      {
+        "name": "qed",
+        "evaluator": "python:utils.scoring_client:read_property",
+        "parameters": {
+          "property_name": "qed"
+        }
+      },
+      {
+        "name": "sa",
+        "evaluator": "python:utils.scoring_client:read_property",
+        "parameters": {
+          "property_name": "sa"
+        }
+      },
+      {
+        "name": "logS",
+        "evaluator": "python:utils.scoring_client:read_property",
+        "parameters": {
+          "property_name": "logS"
+        }
+      },
+      {
+        "name": "herg_safety",
+        "evaluator": "python:utils.scoring_client:read_property",
+        "parameters": {
+          "property_name": "herg_safety"
+        }
+      },
+      {
+        "name": "permeability",
+        "evaluator": "python:utils.scoring_client:read_property",
+        "parameters": {
+          "property_name": "permeability"
+        }
+      },
+      {
+        "name": "cyp3a4_safety",
+        "evaluator": "python:utils.scoring_client:read_property",
+        "parameters": {
+          "property_name": "cyp3a4_safety"
+        }
+      },
+      {
+        "name": "ames_safety",
+        "evaluator": "python:utils.scoring_client:read_property",
+        "parameters": {
+          "property_name": "ames_safety"
+        }
+      },
+      {
+        "name": "metabolic_stability",
+        "evaluator": "python:utils.scoring_client:read_property",
+        "parameters": {
+          "property_name": "metabolic_stability"
+        }
+      }
+    ],
+    "reward_scale": 0.1,
+    "preference_weight": 0.5,
+    "hypervolume": {
+      "samples_power": 18,
+      "seed": 7101,
+      "integration_upper": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "history_scope": "public_plus_feasible_novel",
+    "excluded_smiles": [
+      "C=C(O)C(=C)O",
+      "CC(C)C(=O)O",
+      "CC(C)CN=N",
+      "CC12CCCC(O)C1(C)CC2",
+      "CCC(C)(C)O",
+      "CP(C)(C)(O)O",
+      "O=C(O)C(O)O",
+      "OC(O)(C(F)(F)F)C(F)(F)F",
+      "OC1CC2CCC3CC1C3C2"
+    ],
+    "ranking": {
+      "method": "unclipped_soft_rank",
+      "preference_weight": 0.3,
+      "temperature": 0.1,
+      "transforms": [
+        {
+          "name": "affinity",
+          "property": "vina_dock",
+          "origin": 0.0,
+          "scale": 12.0,
+          "direction": "min"
+        },
+        {
+          "name": "qed",
+          "property": "qed",
+          "origin": 0.0,
+          "scale": 1.0,
+          "direction": "max"
+        },
+        {
+          "name": "sa",
+          "property": "sa",
+          "origin": 0.0,
+          "scale": 1.0,
+          "direction": "max"
+        },
+        {
+          "name": "logS",
+          "property": "logs_reward",
+          "origin": -6.0,
+          "scale": 6.0,
+          "direction": "max"
+        },
+        {
+          "name": "herg_safety",
+          "property": "herg_reward",
+          "origin": 1.0,
+          "scale": 1.0,
+          "direction": "min"
+        },
+        {
+          "name": "permeability",
+          "property": "caco2_reward",
+          "origin": -7.0,
+          "scale": 3.0,
+          "direction": "max"
+        },
+        {
+          "name": "cyp3a4_safety",
+          "property": "cyp3a4_reward",
+          "origin": 1.0,
+          "scale": 1.0,
+          "direction": "min"
+        },
+        {
+          "name": "ames_safety",
+          "property": "ames_reward",
+          "origin": 1.0,
+          "scale": 1.0,
+          "direction": "min"
+        },
+        {
+          "name": "metabolic_stability",
+          "property": "clearance_reward",
+          "origin": 100.0,
+          "scale": 100.0,
+          "direction": "min"
+        }
+      ]
+    }
+  },
+  "scoring_service": {
+    "url": "http://127.0.0.1:18766",
+    "arm": "v18",
+    "protocol": "configs/scoring_9obj.json"
+  },
+  "frontier_start": {
+    "selection": "surrogate_edit_hv_graph_then_best_parent",
+    "conformer": "scored_prepared",
+    "decomposition": "brics_nearest_reference_regions"
+  },
+  "size_policy": {
+    "version": 9,
+    "operator": "frontier_fragment_replace_ppo_v9",
+    "actions": [
+      "keep",
+      "scaffold_reduce",
+      "prune",
+      "contract",
+      "grow",
+      "insert",
+      "substitute",
+      "close_ring",
+      "open_ring",
+      "bond_order",
+      "fragment_graft",
+      "fragment_replace"
+    ],
+    "fragments": [
+      "C",
+      "N",
+      "O",
+      "CC",
+      "CO",
+      "CN",
+      "CCC",
+      "CCO",
+      "CCN",
+      "OC",
+      "C=O",
+      "C(=O)N",
+      "NC=O",
+      "C(=O)O"
+    ],
+    "atom_types": [
+      6,
+      7,
+      8,
+      9,
+      16,
+      17
+    ],
+    "min_atoms": 6,
+    "max_atoms": 60,
+    "hidden": 64,
+    "actor_lr": 0.003,
+    "critic_lr": 0.001,
+    "entropy_coefficient": 0.03,
+    "action_prior": [
+      0.1,
+      4.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      2.0,
+      2.0
+    ],
+    "candidate_lr": 0.01,
+    "candidate_hidden": 64,
+    "candidate_feature_version": 2,
+    "surrogate": {
+      "version": 2,
+      "warmup_molecules": 32,
+      "samples_power": 13,
+      "seed": 7101,
+      "strength": 1.5,
+      "relative_floor": 0.02,
+      "max_log_span": 5.0
+    },
+    "fragment_min_atoms": 4,
+    "fragment_max_atoms": 8,
+    "max_donor_fragments": 32,
+    "replacement_max_atoms": 12,
+    "ring_closure_max_aromatic_overlap": 2
+  },
+  "parent_selection": {
+    "exploration": 0.2,
+    "samples_power": 12,
+    "potential_margin": 0.15
+  },
+  "parent_lookahead": {
+    "version": 1,
+    "exploration": 0.2
+  }
+}

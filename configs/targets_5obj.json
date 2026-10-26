@@ -1,0 +1,24 @@
+{
+  "targets": [
+    {
+      "source_ligand": "NR1I3_MOUSE_114_358_0/1xnx_A_rec_1xnx_ate_lig_tt_min_0.sdf",
+      "receptor": "NR1I3_MOUSE_114_358_0/1xnx_A_rec.pdb",
+      "original_lmdb_key": "00090777",
+      "preference_keys": [
+        "00089992",
+        "00089993",
+        "00137620",
+        "00137621"
+      ],
+      "protein_atoms": 436,
+      "ligand_atoms": 20,
+      "ligand_size_bin": [
+        16,
+        25
+      ],
+      "target_id": 0,
+      "rl_split": "train",
+      "original_target_id": 5
+    }
+  ]
+}

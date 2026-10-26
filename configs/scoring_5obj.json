@@ -1,0 +1,93 @@
+{
+  "seed": 7101,
+  "attempts_per_method": 128,
+  "docking": {
+    "seed": 7331,
+    "exhaustiveness": 4,
+    "box_size": [
+      22,
+      22,
+      22
+    ],
+    "cpu": 2,
+    "conformers": 1
+  },
+  "objective_transforms": [
+    {
+      "name": "affinity",
+      "property": "vina_dock",
+      "origin": 0.0,
+      "scale": 12.0,
+      "direction": "min"
+    },
+    {
+      "name": "qed",
+      "property": "qed",
+      "origin": 0.0,
+      "scale": 1.0,
+      "direction": "max"
+    },
+    {
+      "name": "sa",
+      "property": "sa",
+      "origin": 0.0,
+      "scale": 1.0,
+      "direction": "max"
+    },
+    {
+      "name": "logS",
+      "property": "logs_reward",
+      "origin": -6.0,
+      "scale": 6.0,
+      "direction": "max"
+    },
+    {
+      "name": "herg_safety",
+      "property": "herg_reward",
+      "origin": 1.0,
+      "scale": 1.0,
+      "direction": "min"
+    }
+  ],
+  "molecular_domain": {
+    "connected": true,
+    "heavy_atoms": [
+      6,
+      60
+    ]
+  },
+  "hard_similarity": false,
+  "similarity": {
+    "radius": 2,
+    "bits": 2048,
+    "threshold": 0.4
+  },
+  "frontier": {
+    "reference": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "integration_upper": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "samples_power": 18,
+    "seed": 7101,
+    "clip": [
+      0.0,
+      1.0
+    ]
+  },
+  "outdir": "outputs/scoring_5obj",
+  "case_config": "configs/v18_5obj.json",
+  "methods": [
+    "v18"
+  ],
+  "scoring_url": "http://127.0.0.1:18764"
+}
